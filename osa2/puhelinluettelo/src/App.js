@@ -53,7 +53,7 @@ const App = () => {
               setMessage(null)
             }, 5000)
             setPersons(persons.filter(p => p.id !== person.id))
-          })
+          }) 
       }
     } else {
       personService
@@ -62,6 +62,14 @@ const App = () => {
           setPersons(persons.concat(returnedPerson));
           setMessage(`${newName} was added to the phonebook!`)
           setMessageType('success')
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          console.log(error.response.data.error)
+          setMessage(error.response.data.error)
+          setMessageType('error')
           setTimeout(() => {
             setMessage(null)
           }, 5000)
