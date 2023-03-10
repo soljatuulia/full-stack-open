@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtheXR0YWphMiIsImlkIjoiNjQwOWQ1ZmRkODhlYWU4ZGZjNGU5ZWNkIiwiaWF0IjoxNjc4MzcwMDk2fQ.KQGu5hJC1wOX255qBboOXGLBryK-Ym2tx1pvt9ArZks
+
+{
+	"title": "Brand New Blog",
+	"author": "Another Blogger",
+	"url": "https://bloggg.com/",
+	"likes": 1,
+  "user": "6409d5fdd88eae8dfc4e9ecd"
+}
