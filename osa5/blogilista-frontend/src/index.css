@@ -1,0 +1,35 @@
+.success {
+  color: greenyellow;
+  background: rgb(158, 188, 96);
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: orangered;
+  background:pink;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;  
+}
+
+.blog-info {
+  padding: 5px;
+  border: ridge;
+  border-width: 1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.blog-details {
+  padding: 5px;
+  border: ridge;
+  border-width: 1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
