@@ -2,7 +2,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { giveVote } from '../reducers/anecdoteReducer';
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector(state => state);
+  const anecdotes = useSelector(state => {
+    return state.anecdotes.filter(a => a.content.includes(state.filter))
+  });
   const dispatch = useDispatch();
 
   const vote = (id) => {
