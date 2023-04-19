@@ -69,15 +69,18 @@ const CreateNew = (props) => {
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     props.addNew({
       content,
       author,
       info,
       votes: 0
     });
+    navigate('/');
   };
 
   return (
@@ -86,15 +89,27 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          <input 
+            name='content' 
+            value={content} 
+            onChange={(event) => 
+              setContent(event.target.value)} />
         </div>
         <div>
           author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <input 
+            name='author'  
+            value={author} 
+            onChange={(event) => 
+              setAuthor(event.target.value)} />
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          <input 
+            name='info' 
+            value={info} 
+            onChange={(event) => 
+              setInfo(event.target.value)} />
         </div>
         <button>create</button>
       </form>
@@ -124,8 +139,12 @@ const App = () => {
   const [notification, setNotification] = useState('');
 
   const addNew = (anecdote) => {
-    anecdote.id = Math.round(Math.random() * 10000)
-    setAnecdotes(anecdotes.concat(anecdote))
+    anecdote.id = Math.round(Math.random() * 10000);
+    setAnecdotes(anecdotes.concat(anecdote));
+    setNotification(`A new anecdote ${anecdote.content} added!`);
+    setTimeout(() => {
+      setNotification('')
+    }, 5000)
   };
 
   const anecdoteById = (id) =>
@@ -151,7 +170,9 @@ const App = () => {
     <div>
       <div>
         <h1>Software anecdotes</h1>
-        <Menu anecdotes={anecdotes} />
+        <Menu anecdotes={anecdotes} /><br />
+
+        <div>{notification}</div>
 
         <Routes>
           <Route path="/" element={<AnecdoteList anecdotes={anecdotes} />} />
