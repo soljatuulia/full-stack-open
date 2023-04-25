@@ -12,6 +12,7 @@ const removeUser = () => {
   localStorage.removeItem(KEY);
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   saveUser,
   loadUser,
