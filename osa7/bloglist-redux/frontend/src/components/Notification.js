@@ -3,7 +3,6 @@ import { setNotification, displayNotification, emptyNotification } from '../redu
 
 const Notification = () => {
   const notification = useSelector(state => state.notification);
-  console.log('Notification / state.notification: ', notification);
   
   if (!notification) {
     return null;

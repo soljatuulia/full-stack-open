@@ -11,6 +11,7 @@ import LoginForm from "./components/Login";
 import NewBlog from "./components/NewBlog";
 import Notification from "./components/Notification";
 import Togglable from "./components/Togglable";
+import { initializeBlogs } from "./reducers/blogReducer";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -27,8 +28,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, []);
+    dispatch(initializeBlogs())
+  }, [dispatch]);
 /*
   const notifyWith = (message, type = "info") => {
     setInfo({
@@ -48,11 +49,9 @@ const App = () => {
       setUser(user);
       storageService.saveUser(user);
       dispatch(setNotification('welcome!', 'info'));
-      console.log('welcome msg should be notified');
     } catch (e) {
       dispatch(setNotification('wrong username or password', 'error'));
-      console.log('wrong credentials should be notified');
-    }
+      }
   };
 
   const logout = async () => {
@@ -62,10 +61,15 @@ const App = () => {
   };
 
   const createBlog = async (newBlog) => {
+    /*
     const createdBlog = await blogService.create(newBlog);
     dispatch(setNotification(`A new blog '${newBlog.title}' by '${newBlog.author}' added`, 'info'));
     setBlogs(blogs.concat(createdBlog));
     blogFormRef.current.toggleVisibility();
+    */
+    
+    dispatch(setNotification(`A new blog '${newBlog.title}' by '${newBlog.author}' added`, 'info'));
+
   };
 
   const like = async (blog) => {
@@ -106,19 +110,11 @@ const App = () => {
         {user.name} logged in
         <button onClick={logout}>logout</button>
       </div>
-      <Togglable buttonLabel="new note" ref={blogFormRef}>
-        <NewBlog createBlog={createBlog} />
+      <Togglable buttonLabel="new blog" ref={blogFormRef}>
+        <NewBlog />
       </Togglable>
       <div>
-        {blogs.sort(byLikes).map((blog) => (
-          <Blog
-            key={blog.id}
-            blog={blog}
-            like={() => like(blog)}
-            canRemove={user && blog.user.username === user.username}
-            remove={() => remove(blog)}
-          />
-        ))}
+      <Blog />
       </div>
     </div>
   );
