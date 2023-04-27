@@ -19,10 +19,10 @@ const create = async (object) => {
 };
 
 const update = async (object) => {
-  const request = await axios.put(`${baseUrl}/${object.id}`, object, {
+  const response = await axios.put(`${baseUrl}/${object.id}`, object, {
     headers,
   });
-  return request.data;
+  return response.data;
 };
 
 const remove = async (id) => {
@@ -30,4 +30,9 @@ const remove = async (id) => {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, update, remove };
+export default { 
+  getAll, 
+  create, 
+  update, 
+  remove 
+};

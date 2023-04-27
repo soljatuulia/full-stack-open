@@ -67,9 +67,6 @@ const App = () => {
     setBlogs(blogs.concat(createdBlog));
     blogFormRef.current.toggleVisibility();
     */
-    
-    dispatch(setNotification(`A new blog '${newBlog.title}' by '${newBlog.author}' added`, 'info'));
-
   };
 
   const like = async (blog) => {
@@ -100,7 +97,7 @@ const App = () => {
     );
   }
 
-  const byLikes = (b1, b2) => b2.likes - b1.likes;
+  //const byLikes = (b1, b2) => b2.likes - b1.likes;
 
   return (
     <div>
