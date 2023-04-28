@@ -1,32 +1,27 @@
-import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { useField } from '../hooks';
+import { loginUser } from '../reducers/loginReducer';
 
-const LoginForm = ({ login }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ login }) => {
+  const dispatch = useDispatch();
+
+  const { reset: resetUsername, ...username } = useField('username');
+  const { reset: resetPassword, ...password } = useField('password');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await login(username, password);
+    dispatch(loginUser(username.value, password.value));
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         username
-        <input
-          id="username"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
+        <input { ...username } />
       </div>
       <div>
         password
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
+        <input { ...password } />
       </div>
       <button id="login-button" type="submit">
         login
@@ -35,4 +30,4 @@ const LoginForm = ({ login }) => {
   );
 };
 
-export default LoginForm;
+export default Login;

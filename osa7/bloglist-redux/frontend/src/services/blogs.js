@@ -8,6 +8,11 @@ const headers = {
     : null,
 };
 
+const setToken = (newToken) => {
+  let token = `Bearer ${newToken}`;
+  return token;
+};
+
 const getAll = async () => {
   const request = await axios.get(baseUrl);
   return request.data;
@@ -31,6 +36,7 @@ const remove = async (id) => {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { 
+  setToken,
   getAll, 
   create, 
   update, 

@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { setNotification, displayNotification, emptyNotification } from '../reducers/notificationReducer';
 
 const Notification = () => {
   const notification = useSelector(state => state.notification);
